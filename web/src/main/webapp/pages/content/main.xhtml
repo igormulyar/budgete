@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Budgete</title>
+
+</h:head>
+<h:body style="padding-top: 60px">
+    <h:outputStylesheet name="css/budgete.css" />
+    <b:navBar id="navBar" brand="Budgete" brandHref="#" inverse="true" fixed="top" fluid="true">
+
+        <b:navbarLinks id="navBarLinks" pull="right">
+            <b:navLink value="Home" href="#"></b:navLink>
+            <b:navLink value="Settings" href="#"></b:navLink>
+            <b:navLink value="Profile" href="#"></b:navLink>
+            <b:navLink value="Help" href="#"></b:navLink>
+        </b:navbarLinks>
+        <!--<h:form id="searchForm" styleClass="navbar-form navbar-right">
+            <div class="form-group">
+                <b:inputText placeholder="Search..." fieldSize="sm"/>
+            </div>
+        </h:form>-->
+    </b:navBar>
+
+    <b:container id="sideBarContainer" fluid="true">
+        <b:row>
+            <b:column col-sm="2" col-md="2" >
+                <!--<b:listLinks>
+                    <b:navLink header="Dasboard Links" />
+                    <b:navLink href="#" value="Dashboard" active="true"/>
+                    <b:navLink href="#" value="Notifications"/> <b:badge value="1"/>
+                    <b:navLink href="#" value="Financial objectives"/>
+                    <b:navLink href="#" value="Reports"/>
+                </b:listLinks>-->
+                <b:form horizontal="true" styleClass="sidebarLinks">
+                    <b:formGroup>
+                        <b:navLink header="Navigate"/>
+                    </b:formGroup>
+                    <b:formGroup>
+                        <b:navLink href="#" value=" Dashboard" active="true" update="mainContent"
+                                   onclick="ajax:navigationBean.setPage('dashboard.xhtml')"/>
+                    </b:formGroup>
+                    <b:formGroup>
+                        <b:navLink href="#" value=" Notifications "/>
+                        <b:badge value="1"/>
+                    </b:formGroup>
+                    <b:formGroup>
+                        <b:navLink href="#" value=" Financial duties" update="mainContent"
+                                   onclick="ajax:navigationBean.setPage('duties.xhtml')"/>
+                    </b:formGroup>
+                    <b:formGroup>
+                        <b:navLink href="#" value=" Reports"/>
+                    </b:formGroup>
+                </b:form>
+
+            </b:column>
+            <b:column id="mainContent" col-sm="7" offset-sm="2" col-md="8" offset="1" styleClass="main">
+<!--
+                <ui:include src="dashboard.xhtml"/>
+-->
+                <ui:include src="#{navigationBean.page}"/>
+            </b:column>
+        </b:row>
+    </b:container>
+</h:body>
+</html>
