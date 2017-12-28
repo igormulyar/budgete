@@ -7,7 +7,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title>Budgete Sign In</title>
-    <h:outputStylesheet name="css/budgete.css" />
+    <h:outputStylesheet name="css/budgete.css"/>
 </h:head>
 <h:body styleClass="login-body">
     <b:container>
@@ -15,17 +15,18 @@
             <h2 class="form-signin-heading">Please sign in</h2>
             <b:inputText id="email" placeholder="Email address" value="#{loginBean.login}">
                 <f:facet name="prepend">
-                    <b:icon name="user" />
+                    <b:icon name="user"/>
                 </f:facet>
             </b:inputText>
             <b:inputText id="password" placeholder="Password" type="password" value="#{loginBean.password}">
                 <f:facet name="prepend">
-                    <b:iconAwesome name="key" />
+                    <b:iconAwesome name="key"/>
                 </f:facet>
             </b:inputText>
             <b:selectBooleanCheckbox value="true" caption="remember me"/>
-            <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg" action="#{loginBean.submitCredentials}"/>
-            <b:commandButton look="info btn-block" size="lg">
+            <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg"
+                             action="#{loginBean.submitCredentials}"/>
+            <b:commandButton look="info btn-block" size="lg" action="signup">
                 <b:iconAwesome name="fa-pied-piper-alt" size="lg"/>
                 <h:outputText value="Sign Up"/>
             </b:commandButton>

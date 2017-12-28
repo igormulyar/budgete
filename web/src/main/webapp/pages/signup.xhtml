@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Budgete Sign Up</title>
+    <h:outputStylesheet name="css/budgete.css"/>
+</h:head>
+<h:body>
+    <b:container id="signInContainer">
+        <h:form id="signUpForm" styleClass="form-signup">
+            <b:row>
+                <b:column medium-screen="2">
+                    <h:outputText id="userNameOutput" value="User Name:"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <b:inputText id="userNameInput" value="#{userBean.userName}" required="true"/>
+                </b:column>
+                <b:column medium-screen="6">
+                    <h:message for="userNameInput" errorClass="error-message"/>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column medium-screen="2">
+                    <h:outputText id="emailOutput" value="Email address:"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <b:inputText id="emailInput" value="#{userBean.email}" required="true"/>
+                </b:column>
+                <b:column medium-screen="6">
+                    <h:message for="emailInput" errorClass="error-message"/>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column medium-screen="2">
+                    <h:outputText id="passwordOutput" value="Password:"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <b:inputText id="passwordInput" value="#{userBean.password}" required="true"/>
+                </b:column>
+                <b:column medium-screen="6">
+                    <h:message for="passwordInput" errorClass="error-message"/>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column medium-screen="2">
+                    <h:outputText id="dateOfBirthOutput" value="Date of birth:"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <b:datepicker id="dateOfBirthInput" value="#{userBean.dateOfBirth}"/>
+                </b:column>
+                <b:column medium-screen="6">
+                    <h:message for="dateOfBirthInput" errorClass="error-message"/>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column medium-screen="2">
+                    <h:outputText id="localeOutput" value="Country of locale:"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <b:selectOneMenu id="localeSelectOne" required="true">
+                        <f:selectItem itemLabel="- please select - "/>
+                        <f:facet name="append-list-icon">
+                            <b:iconAwesome name="list"/>
+                        </f:facet>
+                    </b:selectOneMenu>
+                </b:column>
+                <b:column medium-screen="6">
+                    <h:message for="localeSelectOne" errorClass="error-message"/>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column span="2" offset="2">
+                    <b:commandButton value="Submit!" look="primary" style="width:100%; margin-top: 2px;"/>
+                </b:column>
+                <b:column span="2">
+                    <b:commandButton value="Clear" look="info" style="width:100%; margin-top: 2px;"/>
+                </b:column>
+            </b:row>
+        </h:form>
+    </b:container>
+</h:body>
+</html>
