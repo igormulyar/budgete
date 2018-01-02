@@ -6,6 +6,5 @@ package com.budgete;
  */
 
 public interface LoginService {
-
-
+    Status checkCredentials(String name, String password);
 }
