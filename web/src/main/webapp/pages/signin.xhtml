@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:b="http://bootsfaces.net/ui">
 <h:head>
     <title>Budgete Sign In</title>
     <h:outputStylesheet name="css/budgete.css"/>
@@ -24,12 +23,13 @@
                 </f:facet>
             </b:inputText>
             <b:selectBooleanCheckbox value="true" caption="remember me"/>
-            <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="lg"
+            <b:commandButton id="signinButton" look="primary btn-block" value="Sign In" icon="log-in" size="lg"
                              action="#{loginBean.submitCredentials}"/>
-            <b:commandButton look="info btn-block" size="lg" action="signup">
+            <b:commandButton id="signupButton" look="info btn-block" size="lg" action="signup">
                 <b:iconAwesome name="fa-pied-piper-alt" size="lg"/>
                 <h:outputText value="Sign Up"/>
             </b:commandButton>
+            <h:messages styleClass="error-message"/>
         </h:form>
     </b:container>
 </h:body>
