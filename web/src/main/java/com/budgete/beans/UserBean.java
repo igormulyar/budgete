@@ -1,5 +1,6 @@
 package com.budgete.beans;
 
+import com.budgete.model.User;
 import java.time.LocalDate;
 import java.util.Locale;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,6 @@ public class UserBean {
         this.userName = userName;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -63,5 +63,23 @@ public class UserBean {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+
+    public String saveUser(){
+        User user = new User(userName, email, password, dateOfBirth, locale);
+        //TODO user service with method for saving the users
+        if (true){
+            return "main";
+        } else {
+            return null;
+        }
+    }
+
+    public void clear(){
+        userName = null;
+        email = null;
+        password = null;
+        dateOfBirth = null;
+        locale = null;
     }
 }

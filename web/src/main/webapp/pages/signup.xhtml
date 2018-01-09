@@ -1,23 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://java.sun.com/jsf/html">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
     <title>Budgete Sign Up</title>
     <h:outputStylesheet name="css/budgete.css"/>
 </h:head>
 <h:body>
     <b:container id="signInContainer">
+        <div style="text-align: center">
+            <h1>Register for Budgete now and start your financilal planing</h1>
+            <h5>Please, provide the required information about you below:</h5>
+        </div>
         <h:form id="signUpForm" styleClass="form-signup">
             <b:row>
                 <b:column medium-screen="2">
                     <h:outputText id="userNameOutput" value="User Name:"/>
                 </b:column>
                 <b:column medium-screen="4">
-                    <b:inputText id="userNameInput" value="#{userBean.userName}" required="true"/>
+                    <b:inputText id="userNameInput" value="#{userBean.userName}" required="true"
+                                 pt:placeholder="enter your name here"/>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="userNameInput" errorClass="error-message"/>
@@ -28,7 +34,9 @@
                     <h:outputText id="emailOutput" value="Email address:"/>
                 </b:column>
                 <b:column medium-screen="4">
-                    <b:inputText id="emailInput" value="#{userBean.email}" required="true"/>
+                    <b:inputText id="emailInput"
+                                 value="#{userBean.email}" required="true"
+                                 pt:placeholder="yourmail@domain.com"/>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="emailInput" errorClass="error-message"/>
@@ -39,7 +47,8 @@
                     <h:outputText id="passwordOutput" value="Password:"/>
                 </b:column>
                 <b:column medium-screen="4">
-                    <b:inputText id="passwordInput" value="#{userBean.password}" required="true"/>
+                    <b:inputSecret id="passwordInput" value="#{userBean.password}" required="true"
+                                   pt:placeholder="enter your password here"/>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="passwordInput" errorClass="error-message"/>
@@ -47,10 +56,24 @@
             </b:row>
             <b:row>
                 <b:column medium-screen="2">
+                    <h:outputText id="repeatPasswordOutput" value="Password (once more):"/>
+                </b:column>
+                <b:column medium-screen="4">
+                    <b:inputSecret id="repeatPasswordInput" value="#{userBean.password}" required="true"
+                                   pt:placeholder="repeat your password here"/>
+                </b:column>
+                <b:column medium-screen="6">
+                    <h:message for="repeatPasswordInput" errorClass="error-message"/>
+                </b:column>
+            </b:row>
+            <b:row>
+                <b:column medium-screen="2">
                     <h:outputText id="dateOfBirthOutput" value="Date of birth:"/>
                 </b:column>
                 <b:column medium-screen="4">
-                    <b:datepicker id="dateOfBirthInput" value="#{userBean.dateOfBirth}"/>
+                    <b:datepicker id="dateOfBirthInput" value="#{userBean.dateOfBirth}"
+                                  changeYear="true" changeMonth="true" required="true" placeholder="MM/dd/yyyy"
+                                  converter="#{localDateConverter}"/>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="dateOfBirthInput" errorClass="error-message"/>
@@ -61,11 +84,13 @@
                     <h:outputText id="localeOutput" value="Country of locale:"/>
                 </b:column>
                 <b:column medium-screen="4">
-                    <b:selectOneMenu id="localeSelectOne" required="true">
-                        <f:selectItem itemLabel="- please select - "/>
+                    <b:selectOneMenu id="localeSelectOne" required="true" value="#{userBean.locale}">
+                        <f:selectItem itemLabel="- please select - " itemValue=""/>
+                        <f:selectItem itemLabel="United States" itemValue="en"/>
                         <f:facet name="append-list-icon">
                             <b:iconAwesome name="list"/>
                         </f:facet>
+                        <f:converter converterId="localeConverter"/>
                     </b:selectOneMenu>
                 </b:column>
                 <b:column medium-screen="6">
@@ -74,10 +99,14 @@
             </b:row>
             <b:row>
                 <b:column span="2" offset="2">
-                    <b:commandButton value="Submit!" look="primary" style="width:100%; margin-top: 2px;"/>
+                    <b:commandButton value="Register me!" look="primary" style="width:100%; margin-top: 2px;"
+                                     action="#{userBean.saveUser}"/>
                 </b:column>
                 <b:column span="2">
-                    <b:commandButton value="Clear" look="info" style="width:100%; margin-top: 2px;"/>
+                    <b:commandButton value="Clear" look="info" style="width:100%; margin-top: 2px;"
+                                     immediate="true" actionListener="#{userBean.clear}">
+                        <f:ajax render="@form" resetValues="true"/>
+                    </b:commandButton>
                 </b:column>
             </b:row>
         </h:form>
