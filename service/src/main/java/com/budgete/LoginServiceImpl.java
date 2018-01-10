@@ -8,9 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
-public class LoginServiceImpl implements LoginService
-{
+@Component
+public class LoginServiceImpl implements LoginService {
+
     @Override
     public Status checkCredentials(String name, String password)
     {
@@ -18,11 +20,11 @@ public class LoginServiceImpl implements LoginService
         {
             Map<String, String> users = getUsers();
 
-            if(users.entrySet().stream().anyMatch(
-                    stringStringEntry -> stringStringEntry.getKey().equals(name) && stringStringEntry.getValue()
-                            .equals(password)))
+            if(users.entrySet().stream()
+                    .anyMatch(stringStringEntry -> stringStringEntry.getKey().equals(name)
+                            && stringStringEntry.getValue().equals(password)))
             {
-                return Status.CORRECT;
+                return Status.SUCCESS;
             }
         }
         catch (SQLException e)
@@ -30,17 +32,17 @@ public class LoginServiceImpl implements LoginService
             e.printStackTrace();
         }
 
-        return Status.NOT_CORRECT;
+        return Status.FAIL;
     }
-    
+
     private Map<String, String> getUsers() throws SQLException
     {
         Map<String, String> result = new HashMap<>();
-        
+
         MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUser("scott");
-        dataSource.setPassword("tiger");
-        dataSource.setServerName("myDBHost.example.org");
+        dataSource.setUser("root");
+        dataSource.setPassword("rootpass");
+        dataSource.setServerName("localhost");
 
         try (Connection connection = dataSource.getConnection();
                 Statement statement = connection.createStatement();
