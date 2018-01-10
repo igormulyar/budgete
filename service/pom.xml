@@ -59,9 +59,12 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.0.5</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/budgete</url>
+                    <url>jdbc:mysql://localhost:3306?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</url>
                     <user>root</user>
                     <password>rootpass</password>
+                    <schemas>
+                        <schema>budgete</schema>
+                    </schemas>
                 </configuration>
             </plugin>
         </plugins>
