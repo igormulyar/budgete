@@ -1,7 +1,7 @@
 package com.budgete.beans;
 
-import com.budgete.LoginService;
-import com.budgete.Status;
+import com.budgete.service.LoginService;
+import com.budgete.dto.Status;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

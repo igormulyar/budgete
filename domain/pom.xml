@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dao</artifactId>
+    <artifactId>domain</artifactId>
 
     <properties>
         <spring.framework.version>4.3.10.RELEASE</spring.framework.version>
@@ -31,7 +31,12 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hb.manager}</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.32</version>
+        </dependency>
 
     </dependencies>
 
@@ -45,5 +50,23 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.0.5</version>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</url>
+                    <user>root</user>
+                    <password>rootpass</password>
+                    <schemas>
+                        <schema>budgete</schema>
+                    </schemas>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

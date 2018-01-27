@@ -15,7 +15,7 @@
 
         <dependency>
             <groupId>com.imuliar.budgete</groupId>
-            <artifactId>dao</artifactId>
+            <artifactId>domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -41,34 +41,5 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.8-dmr</version>
-        </dependency>
-
-
-
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>5.0.5</version>
-                <configuration>
-                    <url>jdbc:mysql://localhost:3306?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</url>
-                    <user>root</user>
-                    <password>rootpass</password>
-                    <schemas>
-                        <schema>budgete</schema>
-                    </schemas>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-
 </project>

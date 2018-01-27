@@ -1,4 +1,4 @@
-package com.budgete;
+package com.budgete.dto;
 
 public enum Status {
     SUCCESS,
