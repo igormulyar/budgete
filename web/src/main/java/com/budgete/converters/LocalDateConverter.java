@@ -2,10 +2,15 @@ package com.budgete.converters;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.validator.ValidatorException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,9 +24,18 @@ public class LocalDateConverter implements Converter {
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
+    private ResourceBundle resourceBundle = PropertyResourceBundle.getBundle("en_bundle");
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return LocalDate.parse(value, formatter);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(value, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
+                    resourceBundle.getString("error.dateFormat")));
+        }
+        return date;
     }
 
     @Override

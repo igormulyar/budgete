@@ -15,29 +15,23 @@ import org.springframework.stereotype.Component;
 public class LoginServiceImpl implements LoginService {
 
     @Override
-    public Status checkCredentials(String email, String password)
-    {
-        try
-        {
+    public Status checkCredentials(String email, String password) {
+        try {
             Map<String, String> users = getUsers();
 
-            if(users.entrySet().stream()
+            if (users.entrySet().stream()
                     .anyMatch(stringStringEntry -> stringStringEntry.getKey().equals(email)
-                            && stringStringEntry.getValue().equals(password)))
-            {
+                            && stringStringEntry.getValue().equals(password))) {
                 return Status.SUCCESS;
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return Status.FAIL;
     }
 
-    private Map<String, String> getUsers() throws SQLException
-    {
+    private Map<String, String> getUsers() throws SQLException {
         Map<String, String> result = new HashMap<>();
 
         MysqlDataSource dataSource = new MysqlDataSource();
@@ -46,11 +40,9 @@ public class LoginServiceImpl implements LoginService {
         dataSource.setServerName("localhost");
 
         try (Connection connection = dataSource.getConnection();
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT email, password FROM budgete.users"))
-        {
-            while (resultSet.next())
-            {
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT email, password FROM budgete.users")) {
+            while (resultSet.next()) {
                 result.put(resultSet.getString("email"), resultSet.getString("password"));
             }
         }

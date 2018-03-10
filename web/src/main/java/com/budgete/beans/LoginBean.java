@@ -1,7 +1,9 @@
 package com.budgete.beans;
 
-import com.budgete.service.LoginService;
 import com.budgete.dto.Status;
+import com.budgete.service.LoginService;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -56,13 +58,14 @@ public class LoginBean {
      * or print the error message if not.</p>
      */
     public String submitCredentials() {
-        LOGGER.info(String.format("Submitting the credentials where login is %s and password is %s", login, password));
+        ResourceBundle resourceBundle = PropertyResourceBundle.getBundle("en_bundle");
+        LOGGER.info(String.format("Submitting the credentials where login is {} and password is {}", login, password));
         if (Status.SUCCESS == loginService.checkCredentials(login, password)) {
             return "main";
         } else {
             FacesContext.getCurrentInstance().addMessage("signinButton",
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sorry, you have entered wrong email or password or both. " +
-                            "Please provide the appropriate credentials.", "Wrong login or password or both."));
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, resourceBundle.getString("error.wrongCredentials"),
+                            "Wrong login or password or both."));
             return null;
         }
     }

@@ -4,26 +4,29 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-    <title>Budgete Sign Up</title>
+    <title>#{bundle.signup_title}</title>
     <h:outputStylesheet name="css/budgete.css"/>
 </h:head>
-<h:body>
+<h:body style="background: #5383ff url('#{resource['/img/signin_background.jpg']}') center;">
     <b:container id="signInContainer">
         <div style="text-align: center">
-            <h1>Register for Budgete now and start your financilal planing</h1>
-            <h5>Please, provide the required information about you below:</h5>
+            <h1>#{bundle.signup_heading1}</h1>
+            <h5>#{bundle.signup_heading2}</h5>
         </div>
         <h:form id="signUpForm" styleClass="form-signup">
             <b:row>
                 <b:column medium-screen="2">
-                    <h:outputText id="userNameOutput" value="User Name:"/>
+                    <h:outputText id="userNameOutput" value="#{bundle.signup_username}"/>
                 </b:column>
                 <b:column medium-screen="4">
                     <b:inputText id="userNameInput" value="#{userBean.userName}" required="true"
-                                 pt:placeholder="enter your name here"/>
+                                 pt:placeholder="#{bundle.signup_username_pholder}">
+                        <f:validator validatorId="nameValidator"/>
+                    </b:inputText>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="userNameInput" errorClass="error-message"/>
@@ -31,12 +34,14 @@
             </b:row>
             <b:row>
                 <b:column medium-screen="2">
-                    <h:outputText id="emailOutput" value="Email address:"/>
+                    <h:outputText id="emailOutput" value="#{bundle.signup_email}"/>
                 </b:column>
                 <b:column medium-screen="4">
                     <b:inputText id="emailInput"
                                  value="#{userBean.email}" required="true"
-                                 pt:placeholder="yourmail@domain.com"/>
+                                 pt:placeholder="#{bundle.signup_email_pholder}">
+                        <f:validator validatorId="emailValidator"/>
+                    </b:inputText>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="emailInput" errorClass="error-message"/>
@@ -44,11 +49,13 @@
             </b:row>
             <b:row>
                 <b:column medium-screen="2">
-                    <h:outputText id="passwordOutput" value="Password:"/>
+                    <h:outputText id="passwordOutput" value="#{bundle.signup_password}"/>
                 </b:column>
                 <b:column medium-screen="4">
                     <b:inputSecret id="passwordInput" value="#{userBean.password}" required="true"
-                                   pt:placeholder="enter your password here"/>
+                                   pt:placeholder="#{bundle.signup_password_pholder}">
+                        <f:validator validatorId="passwordValidator"/>
+                    </b:inputSecret>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="passwordInput" errorClass="error-message"/>
@@ -56,24 +63,31 @@
             </b:row>
             <b:row>
                 <b:column medium-screen="2">
-                    <h:outputText id="repeatPasswordOutput" value="Password (once more):"/>
+                    <h:outputText id="repeatPasswordOutput" value="#{bundle.signup_repeatPswrd}"/>
                 </b:column>
                 <b:column medium-screen="4">
                     <b:inputSecret id="repeatPasswordInput" value="#{userBean.password}" required="true"
-                                   pt:placeholder="repeat your password here"/>
+                                   pt:placeholder="#{bundle.signup_repeatPswrd_pholder}">
+                        <f:validator validatorId="confirmPasswordValidator"/>
+                        <p:ajax update="repreatPasswordMsg" event="keyup"/>
+                    </b:inputSecret>
                 </b:column>
                 <b:column medium-screen="6">
-                    <h:message for="repeatPasswordInput" errorClass="error-message"/>
+                    <h:message id="repreatPasswordMsg" for="repeatPasswordInput" errorClass="error-message"/>
                 </b:column>
             </b:row>
             <b:row>
                 <b:column medium-screen="2">
-                    <h:outputText id="dateOfBirthOutput" value="Date of birth:"/>
+                    <h:outputText id="dateOfBirthOutput" value="#{bundle.signup_dateBirth}"/>
                 </b:column>
                 <b:column medium-screen="4">
                     <b:datepicker id="dateOfBirthInput" value="#{userBean.dateOfBirth}"
-                                  changeYear="true" changeMonth="true" required="true" placeholder="MM/dd/yyyy"
-                                  converter="#{localDateConverter}"/>
+                                  changeYear="true" changeMonth="true" required="true"
+                                  placeholder="#{bundle.signup_date_pholder}"
+                                  converter="localDateConverter">
+                        <f:converter converterId="localDateConverter"/>
+                        <f:validator validatorId="dateOfBirthValidator"/>
+                    </b:datepicker>
                 </b:column>
                 <b:column medium-screen="6">
                     <h:message for="dateOfBirthInput" errorClass="error-message"/>
@@ -81,11 +95,11 @@
             </b:row>
             <b:row>
                 <b:column medium-screen="2">
-                    <h:outputText id="localeOutput" value="Country of locale:"/>
+                    <h:outputText id="localeOutput" value="#{bundle.signup_countyLocale}"/>
                 </b:column>
                 <b:column medium-screen="4">
                     <b:selectOneMenu id="localeSelectOne" required="true" value="#{userBean.locale}">
-                        <f:selectItem itemLabel="- please select - " itemValue=""/>
+                        <f:selectItem itemLabel="#{bundle.signup_selectOneDefault}" itemValue=""/>
                         <f:selectItem itemLabel="United States" itemValue="en"/>
                         <f:facet name="append-list-icon">
                             <b:iconAwesome name="list"/>
@@ -99,11 +113,12 @@
             </b:row>
             <b:row>
                 <b:column span="2" offset="2">
-                    <b:commandButton value="Register me!" look="primary" style="width:100%; margin-top: 2px;"
+                    <b:commandButton value="#{bundle.signup_register}" look="primary"
+                                     style="width:100%; margin-top: 2px;"
                                      action="#{userBean.saveUser}"/>
                 </b:column>
                 <b:column span="2">
-                    <b:commandButton value="Clear" look="info" style="width:100%; margin-top: 2px;"
+                    <b:commandButton value="#{bundle.signup_clearBtn}" look="info" style="width:100%; margin-top: 2px;"
                                      immediate="true" actionListener="#{userBean.clear}">
                         <f:ajax render="@form" resetValues="true"/>
                     </b:commandButton>

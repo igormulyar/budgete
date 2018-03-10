@@ -1,6 +1,8 @@
 package com.budgete.converters;
 
 import java.util.Locale;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -25,12 +27,13 @@ public class LocaleConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        ResourceBundle resourceBundle = PropertyResourceBundle.getBundle("en_bundle");
         if (value instanceof String) {
-            if (StringUtils.isEmpty(value)){
+            if (StringUtils.isEmpty(value)) {
                 return null;
             }
             return (String) value;
         }
-        throw new IllegalArgumentException(String.format("value=%s could not be converted to an appropriate String.", value));
+        throw new IllegalArgumentException(String.format(resourceBundle.getString("error.localeConverterMessage"), value));
     }
 }
