@@ -74,12 +74,4 @@ public class UserBean {
             return null;
         }
     }
-
-    public void clear(){
-        userName = null;
-        email = null;
-        password = null;
-        dateOfBirth = null;
-        locale = null;
-    }
 }

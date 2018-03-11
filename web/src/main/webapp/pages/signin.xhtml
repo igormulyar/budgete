@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
     <title>Budgete</title>
     <h:outputStylesheet name="css/budgete.css"/>
@@ -13,13 +13,14 @@
     <b:container>
         <h:form styleClass="form-signin" prependId="false">
             <h2 class="form-signin-heading">#{bundle.signin_invataion}</h2>
-            <b:inputText id="email" placeholder="#{bundle.signin_email}" value="#{loginBean.login}">
+            <b:inputText id="email" placeholder="#{bundle.signin_email}" value="#{loginBean.login}" required="true"
+                         requiredMessage="#{bundle.signin_email_required}">
                 <f:facet name="prepend">
                     <b:icon name="user"/>
                 </f:facet>
             </b:inputText>
             <b:inputText id="password" placeholder="#{bundle.signin_password}" type="password"
-                         value="#{loginBean.password}">
+                         value="#{loginBean.password}" required="true" requiredMessage="#{bundle.signin_password_required}">
                 <f:facet name="prepend">
                     <b:iconAwesome name="key"/>
                 </f:facet>
@@ -28,7 +29,7 @@
             <b:commandButton id="signinButton" look="primary btn-block" value="#{bundle.signin_signInBtn}" icon="log-in"
                              size="lg"
                              action="#{loginBean.submitCredentials}"/>
-            <b:commandButton id="signupButton" look="info btn-block" size="lg" action="signup">
+            <b:commandButton id="signupButton" look="info btn-block" size="lg" action="signup" immediate="true">
                 <b:iconAwesome name="fa-pied-piper-alt" size="lg"/>
                 <h:outputText value="#{bundle.signin_signUpBtn}"/>
             </b:commandButton>
