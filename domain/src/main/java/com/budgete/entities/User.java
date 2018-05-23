@@ -1,29 +1,37 @@
-package com.budgete.beans;
+package com.budgete.entities;
 
-import com.budgete.entities.User;
 import java.time.LocalDate;
 import java.util.Locale;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * @author imuliar
- * 28.12.2017
+ * 07.01.2018
  */
 
-@Component
-@SessionScope
-public class UserBean {
+@Entity
+@Table(name = "users")
+public class User extends BasicEntityFrame{
 
+    @Column(name="username")
     private String userName;
 
     private String email;
 
     private String password;
 
+    @Column(name = "birthday")
     private LocalDate dateOfBirth;
 
+    //TODO consider ORM mapping for this field
+    @Transient
     private Locale locale;
+
+    public User() {
+    }
 
     public String getUserName() {
         return userName;
@@ -65,9 +73,11 @@ public class UserBean {
         this.locale = locale;
     }
 
-    public String saveUser(){
-        User user = new User(userName, email, password, dateOfBirth, locale);
-        //TODO user service with method for saving the users
-        return "main";
+    public User(String userName, String email, String password, LocalDate dateOfBirth, Locale locale) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.locale = locale;
     }
 }

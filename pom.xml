@@ -15,6 +15,15 @@
         <module>web</module>
     </modules>
 
+    <properties>
+        <spring.framework>5.0.2.RELEASE</spring.framework>
+        <hb.core>5.2.17.Final</hb.core>
+        <hb.manager>4.2.5.Final</hb.manager>
+        <spring.orm>5.0.5.RELEASE</spring.orm>
+        <spring.jdbc>5.0.5.RELEASE</spring.jdbc>
+
+    </properties>
+
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->

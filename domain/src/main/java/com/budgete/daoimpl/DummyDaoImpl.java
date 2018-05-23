@@ -1,4 +1,4 @@
-package com.budgete.daoImpl;
+package com.budgete.daoimpl;
 
 /**
  * <p>Dummy DAO to show where the the DAO implementations should be stored</p>

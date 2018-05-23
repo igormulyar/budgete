@@ -1,18 +1,18 @@
 package com.budgete.serviceImpl;
 
 import com.budgete.dto.Status;
+import com.budgete.entities.User;
 import com.budgete.service.LoginService;
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import com.budgete.service.UserService;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LoginServiceImpl implements LoginService {
+
+    UserService userService;
 
     @Override
     public Status checkCredentials(String email, String password) {
@@ -32,21 +32,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     private Map<String, String> getUsers() throws SQLException {
-        Map<String, String> result = new HashMap<>();
-
-        MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUser("root");
-        dataSource.setPassword("rootpass");
-        dataSource.setServerName("localhost");
-
-        try (Connection connection = dataSource.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT email, password FROM budgete.users")) {
-            while (resultSet.next()) {
-                result.put(resultSet.getString("email"), resultSet.getString("password"));
-            }
-        }
-
-        return result;
+        return userService.getAll().stream()
+                .collect(Collectors.toMap(User::getEmail, User::getPassword));
     }
 }
