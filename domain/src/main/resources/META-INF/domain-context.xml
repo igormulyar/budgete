@@ -41,9 +41,9 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <tx:annotation-driven/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="datasource" class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
+    <bean id="datasource" class="${datasource.driver}">
         <property name="databaseName" value="${datasource.databaseName}"/>
         <property name="URL" value="${datasource.url}"/>
         <property name="user" value="${datasource.username}"/>

@@ -2,7 +2,6 @@ package com.budgete.entities;
 
 import java.time.LocalDate;
 import java.util.Locale;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -13,17 +12,15 @@ import javax.persistence.Transient;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User extends BasicEntityFrame{
 
-    @Column(name="username")
     private String userName;
 
     private String email;
 
-    private String password;
+    private String userPassword;
 
-    @Column(name = "birthday")
     private LocalDate dateOfBirth;
 
     //TODO consider ORM mapping for this field
@@ -49,12 +46,12 @@ public class User extends BasicEntityFrame{
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String password) {
+        this.userPassword = password;
     }
 
     public LocalDate getDateOfBirth() {
@@ -73,10 +70,10 @@ public class User extends BasicEntityFrame{
         this.locale = locale;
     }
 
-    public User(String userName, String email, String password, LocalDate dateOfBirth, Locale locale) {
+    public User(String userName, String email, String userPassword, LocalDate dateOfBirth, Locale locale) {
         this.userName = userName;
         this.email = email;
-        this.password = password;
+        this.userPassword = userPassword;
         this.dateOfBirth = dateOfBirth;
         this.locale = locale;
     }

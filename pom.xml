@@ -17,16 +17,17 @@
 
     <properties>
         <spring.framework>5.0.2.RELEASE</spring.framework>
-        <hb.core>5.2.17.Final</hb.core>
-        <hb.manager>4.2.5.Final</hb.manager>
+        <hb.core>5.2.16.Final</hb.core>
         <spring.orm>5.0.5.RELEASE</spring.orm>
         <spring.jdbc>5.0.5.RELEASE</spring.jdbc>
-
+        <lombok.version>1.16.18</lombok.version>
+        <mysql.driver.version>5.1.32</mysql.driver.version>
+        <jsf.version>2.2.14</jsf.version>
+        <bootsfaces.version>1.1.3</bootsfaces.version>
+        <primefaces.version>6.1</primefaces.version>
     </properties>
 
     <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -34,7 +35,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -42,13 +42,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.8.2</version>
         </dependency>
-        
     </dependencies>
 
     <build>

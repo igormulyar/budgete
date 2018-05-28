@@ -1,11 +1,12 @@
-CREATE TABLE if not EXISTS `budgete`.`users` (
-  `username` VARCHAR(16) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `birthday` DATE NULL);
+/*CREATE USERS TABLE*/
+CREATE TABLE if not EXISTS USERS (
+  id INTEGER(20) PRIMARY KEY,
+  userName VARCHAR(16) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  userPassword VARCHAR(32) NOT NULL,
+  creationTimestamp TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  dateOfBirth DATE NULL,
+  CONSTRAINT UC_userName UNIQUE (userName));
 
-ALTER TABLE `budgete`.`users`
-ADD PRIMARY KEY (`username`);
-
-insert into budgete.users(username, email, password) values('user', 'user@budgete.com', 'qwerty');
+/*INSERT INITIAL DEFAULT USER*/
+INSERT INTO USERS(id, userName, email, userPassword) values(1, 'user', 'user@budgete.com', 'Password1');

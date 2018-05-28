@@ -12,8 +12,6 @@
     <artifactId>domain</artifactId>
 
     <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -25,7 +23,6 @@
             <artifactId>spring-beans</artifactId>
             <version>${spring.framework}</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -45,7 +42,6 @@
             <version>${spring.framework}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
@@ -56,7 +52,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.18</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -67,19 +63,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hb.manager}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.32</version>
+            <version>${mysql.driver.version}</version>
         </dependency>
-
-
-
     </dependencies>
 
     <repositories>
@@ -100,7 +87,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.0.5</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</url>
+                    <url>jdbc:mysql://localhost:3306/budgete?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</url>
                     <user>root</user>
                     <password>rootpass</password>
                     <schemas>

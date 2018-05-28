@@ -1,9 +1,7 @@
 package com.budgete.beans;
 
 import com.budgete.dto.Status;
-import com.budgete.entities.User;
 import com.budgete.service.LoginService;
-import java.time.LocalDate;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -38,6 +36,11 @@ public class LoginBean {
      */
     private LoginService loginService;
 
+    @Autowired
+    public LoginBean(LoginService loginService) {
+        this.loginService = loginService;
+    }
+
     public String getLogin() {
         return login;
     }
@@ -68,24 +71,7 @@ public class LoginBean {
             FacesContext.getCurrentInstance().addMessage("signinButton",
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, resourceBundle.getString("error.wrongCredentials"),
                             "Wrong login or password or both."));
-
-            //TODO DELETE THIS SHIT
-            User alienUser = new User();
-            alienUser.setUserName("ALIEN USER");
-            alienUser.setDateOfBirth(LocalDate.of(1991, 4, 12));
-            alienUser.setEmail("alien@e.mail");
-            alienUser.setPassword("password");
-
             return null;
         }
-    }
-
-    public LoginService getLoginService() {
-        return loginService;
-    }
-
-    @Autowired
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
     }
 }
